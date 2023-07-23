@@ -10,8 +10,8 @@ export class TaskService {
 
   constructor(protected http: HttpClient) {}
 
-  public getAll(): Observable<Task> {
-    return this.http.get<Task>(this.url);
+  public getAll(): Observable<Task[]> {
+    return this.http.get<Task[]>(this.url);
   }
 
   public getOne(id: string): Observable<Task> {

@@ -10,15 +10,15 @@ export class SidenavService {
     return this.expanded;
   }
 
-  toggleSidenav() {
+  public toggleExpanded() {
     this.expanded = !this.expanded;
   }
 
-  expandSidenav() {
+  public expandExpanded() {
     this.expanded = true;
   }
 
-  collapseSidenav() {
+  public collapseExpanded() {
     this.expanded = false;
   }
 }

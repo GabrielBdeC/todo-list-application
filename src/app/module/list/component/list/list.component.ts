@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { List } from '../model/list.model';
-import { ListService } from '../service/list.service';
+import { List } from '../../model/list.model';
+import { ListService } from '../../service/list.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogListComponent } from './dialog/dialog-list.component';
+import { SidenavService } from '../../../../shared/service/sidenav.service';
 
 @Component({
-  selector: 'task-list',
+  selector: 'task-list-container',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss'],
 })
@@ -16,6 +17,7 @@ export class ListComponent implements OnInit {
   constructor(
     private listService: ListService,
     private dialog: MatDialog,
+    public sidenavService: SidenavService,
   ) {}
 
   ngOnInit() {

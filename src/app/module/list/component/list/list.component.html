@@ -1,0 +1,48 @@
+<span *ngFor="let item of listItems">
+  <mat-card
+    class="todo-card"
+    *ngIf="sidenavService.isExpanded()"
+    [ngClass]="{ selected: isSelectedItem(item.id) }"
+  >
+    <mat-card-content
+      (mouseenter)="setSelectedItem(item.id)"
+      (mouseleave)="setSelectedItem(null)"
+      (click)="selectList(item.id)"
+    >
+      <div class="todo-content">
+        {{ item.name }}
+        <button
+          mat-icon-button
+          class="edit-icon"
+          (click)="updateItem(item.id)"
+          *ngIf="isSelectedItem(item.id)"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          class="delete-icon"
+          (click)="deleteItem(item.id)"
+          *ngIf="isSelectedItem(item.id)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card></span
+>
+<span
+  ><mat-card
+    class="todo-card"
+    *ngIf="sidenavService.isExpanded()"
+    (click)="createList()"
+    [ngClass]="{ selected: isSelectedItem('new') }"
+  >
+    <mat-card-content
+      (mouseenter)="setSelectedItem('new')"
+      (mouseleave)="setSelectedItem(null)"
+    >
+      <div class="todo-content">Nova Lista</div>
+    </mat-card-content>
+  </mat-card></span
+>

@@ -1,5 +1,5 @@
-import { Component, HostBinding } from '@angular/core';
-import { SidenavService } from './service/sidenav.service';
+import { Component } from '@angular/core';
+import { SidenavService } from 'src/app/shared/service/sidenav.service';
 
 @Component({
   selector: 'task-container',
@@ -8,9 +8,4 @@ import { SidenavService } from './service/sidenav.service';
 })
 export class TaskContainerComponent {
   constructor(public sidenavService: SidenavService) {}
-
-  @HostBinding('class.is-expanded')
-  get isExpanded() {
-    return this.sidenavService.isExpanded();
-  }
 }

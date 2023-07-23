@@ -6,33 +6,29 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { TaskContainerComponent } from './task-container.component';
 import { ListService } from './service/list.service';
-import { TaskService } from './service/task.service';
-import { SidenavService } from './service/sidenav.service';
-import { SidenavLinkComponent } from './sidenav-link/sidenav-link.component';
+import { SidenavService } from '../../shared/service/sidenav.service';
 import { MatCardModule } from '@angular/material/card';
-import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
-import { ListComponent } from './component/list.component';
+import { ListComponent } from './component/list/list.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
-import { DialogListComponent } from './component/dialog/dialog-list.component';
+import { DialogListComponent } from './component/list/dialog/dialog-list.component';
 
 @NgModule({
-  declarations: [TaskContainerComponent, SidenavLinkComponent, ListComponent, DialogListComponent],
+  declarations: [TaskContainerComponent, ListComponent, DialogListComponent],
   imports: [
     CommonModule,
     MatSidenavModule,
     MatButtonModule,
     MatIconModule,
     MatCardModule,
-    MatListModule,
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
   ],
-  providers: [ListService, TaskService, SidenavService],
+  providers: [ListService, SidenavService],
   exports: [TaskContainerComponent],
 })
 export class TaskModule {}
