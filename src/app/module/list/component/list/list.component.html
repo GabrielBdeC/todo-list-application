@@ -2,32 +2,30 @@
   <mat-card
     class="todo-card"
     *ngIf="sidenavService.isExpanded()"
-    [ngClass]="{ selected: isSelectedItem(item.id) }"
+    [ngClass]="{ selected: isHighlightedItem(item.id) || isSelectedItem(item.id) }"
   >
     <mat-card-content
-      (mouseenter)="setSelectedItem(item.id)"
-      (mouseleave)="setSelectedItem(null)"
+      (mouseenter)="setHighlightedItem(item.id)"
+      (mouseleave)="setHighlightedItem(null)"
       (click)="selectList(item.id)"
     >
-      <div class="todo-content">
-        {{ item.name }}
-        <button
-          mat-icon-button
-          class="edit-icon"
-          (click)="updateItem(item.id)"
-          *ngIf="isSelectedItem(item.id)"
-        >
-          <mat-icon>edit</mat-icon>
-        </button>
-        <button
-          mat-icon-button
-          class="delete-icon"
-          (click)="deleteItem(item.id)"
-          *ngIf="isSelectedItem(item.id)"
-        >
-          <mat-icon>delete</mat-icon>
-        </button>
-      </div>
+      {{ item.name }}
+      <button
+        mat-icon-button
+        class="edit-icon"
+        (click)="updateItem(item.id)"
+        *ngIf="isHighlightedItem(item.id)"
+      >
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        class="delete-icon"
+        (click)="removeItem(item.id)"
+        *ngIf="isHighlightedItem(item.id)"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
     </mat-card-content>
   </mat-card></span
 >
@@ -36,13 +34,12 @@
     class="todo-card"
     *ngIf="sidenavService.isExpanded()"
     (click)="createList()"
-    [ngClass]="{ selected: isSelectedItem('new') }"
+    [ngClass]="{ selected: isHighlightedItem('new') }"
   >
     <mat-card-content
-      (mouseenter)="setSelectedItem('new')"
-      (mouseleave)="setSelectedItem(null)"
-    >
-      <div class="todo-content">Nova Lista</div>
+      (mouseenter)="setHighlightedItem('new')"
+      (mouseleave)="setHighlightedItem(null)"
+      >Nova lista
     </mat-card-content>
   </mat-card></span
 >

@@ -8,7 +8,7 @@
     mode="side"
     opened="true"
   >
-    <task-list-container></task-list-container>
+    <task-list-container (onSelectListEvent)="showTasks($event)"></task-list-container>
   </mat-sidenav>
-  <div class="sidenav-content">Main content that resizes properly</div>
+  <div class="sidenav-content"><task-task-container [list]="selectedList"></task-task-container></div>
 </mat-sidenav-container>

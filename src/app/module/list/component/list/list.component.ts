@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { List } from '../../model/list.model';
 import { ListService } from '../../service/list.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -11,7 +11,10 @@ import { SidenavService } from '../../../../shared/service/sidenav.service';
   styleUrls: ['./list.component.scss'],
 })
 export class ListComponent implements OnInit {
+  @Output() onSelectListEvent = new EventEmitter<List | null>();
+
   listItems: List[];
+  highlightedItem: string | null;
   selectedItem: string | null;
 
   constructor(
@@ -29,18 +32,25 @@ export class ListComponent implements OnInit {
   }
 
   selectList(id: string) {
-    console.log(`List ${id}`);
+    this.listService.getOne(id).subscribe((list: List) => {
+      this.setSelectedItem(id);
+      this.onSelectListEvent.emit(list);
+    });
   }
 
-  deleteItem(id: string) {
+  removeItem(id: string) {
     this.listService.remove(id).subscribe(() => {
+      if (this.selectedItem === id) {
+        this.setSelectedItem(null);
+        this.onSelectListEvent.emit(null);
+      }
       this.refresh();
     });
   }
 
   updateItem(id: string) {
     const dialogRef = this.dialog.open(DialogListComponent, {
-      data: { isNew: false, list: this.listItems.find(el => el.id === id) },
+      data: { isNew: false, list: structuredClone(this.listItems.find(el => el.id === id)) },
     });
     dialogRef.afterClosed().subscribe(response => {
       if (response.success) {
@@ -49,6 +59,14 @@ export class ListComponent implements OnInit {
         });
       }
     });
+  }
+
+  setHighlightedItem(id: string | null) {
+    this.highlightedItem = id;
+  }
+
+  isHighlightedItem(item: string | null): boolean {
+    return this.highlightedItem === item;
   }
 
   setSelectedItem(id: string | null) {
@@ -63,7 +81,8 @@ export class ListComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogListComponent, { data: { isNew: true } });
     dialogRef.afterClosed().subscribe(response => {
       if (response.success) {
-        this.listService.create(response.data).subscribe(() => {
+        this.listService.create(response.data).subscribe(listCreated => {
+          this.selectList(listCreated.id);
           this.refresh();
         });
       }

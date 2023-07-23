@@ -1,0 +1,28 @@
+.todo-new-iput {
+  margin: 16px 8px 0px;
+  width: 50vh;
+}
+.todo-card {
+  width: 50vh;
+  margin: 8px;
+  position: relative;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+.todo-card.selected {
+  box-shadow: 0 0 5px #007bff;
+  border: 1px solid #007bff;
+}
+.edit-icon,
+.delete-icon {
+  position: absolute;
+  font-size: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.edit-icon {
+  right: 45px;
+}
+.delete-icon {
+  right: 4px;
+}

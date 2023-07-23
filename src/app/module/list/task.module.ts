@@ -12,11 +12,15 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ListComponent } from './component/list/list.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DialogListComponent } from './component/list/dialog/dialog-list.component';
+import { TaskComponent } from './component/task/task.component';
+import { TaskService } from './service/task.service';
+import { DialogTaskComponent } from './component/task/dialog/dialog-task.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
-  declarations: [TaskContainerComponent, ListComponent, DialogListComponent],
+  declarations: [TaskContainerComponent, ListComponent, DialogListComponent, TaskComponent, DialogTaskComponent],
   imports: [
     CommonModule,
     MatSidenavModule,
@@ -27,8 +31,10 @@ import { DialogListComponent } from './component/list/dialog/dialog-list.compone
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
+    ReactiveFormsModule,
+    MatCheckboxModule,
   ],
-  providers: [ListService, SidenavService],
+  providers: [ListService, SidenavService, TaskService],
   exports: [TaskContainerComponent],
 })
 export class TaskModule {}
