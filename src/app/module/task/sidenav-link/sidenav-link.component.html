@@ -1,0 +1,12 @@
+<a
+  routerLinkActive="active"
+>
+  <!-- Wrapping icon and text with spans to make text truncation work -->
+  <span>
+    <ng-content select="[icon]"></ng-content>
+  </span>
+
+  <span class="text-container">
+    <ng-content></ng-content>
+  </span>
+</a>

@@ -1,0 +1,43 @@
+.todo-card {
+  margin-bottom: 8px;
+  position: relative;
+  border: 1px solid #ccc;
+  transition: box-shadow 0.3s;
+  cursor: pointer;
+}
+
+.todo-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+}
+
+.edit-icon,
+.delete-icon {
+  display: none;
+  position: absolute;
+
+  margin: auto;
+  font-size: 12px;
+  padding: 2px;
+}
+
+.edit-icon {
+  right: 44px;
+}
+
+.delete-icon {
+  right: 8px;
+}
+
+.todo-card:hover .edit-icon,
+.todo-card:hover .delete-icon {
+  display: inline-flex;
+}
+
+.todo-card.selected {
+  box-shadow: 0 0 5px #007bff;
+  border: 1px solid #007bff;
+}

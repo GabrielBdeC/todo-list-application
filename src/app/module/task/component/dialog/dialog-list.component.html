@@ -1,0 +1,46 @@
+<h1
+  mat-dialog-title
+  *ngIf="isNew"
+>
+  Criar lista
+</h1>
+<h1
+  mat-dialog-title
+  *ngIf="!isNew"
+>
+  Atualizar lista
+</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <mat-label>Nome</mat-label>
+    <input
+      matInput
+      type="text"
+      [(ngModel)]="value.name"
+    />
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button
+    mat-button
+    (click)="cancel()"
+  >
+    Cancelar
+  </button>
+  <button
+    mat-button
+    cdkFocusInitial
+    (click)="response()"
+    *ngIf="isNew"
+  >
+    Criar
+  </button>
+  <button
+    mat-button
+    cdkFocusInitial
+    (click)="response()"
+    *ngIf="!isNew"
+  >
+    Atualizar
+  </button>
+</div>
